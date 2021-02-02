@@ -5,14 +5,20 @@ Create new post
 
 {% block content %}
 {% if user.is_authenticated %}
-<h1>Add Post.... </h1>
-<br />
-<form method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button class="btn btn-success">Post</button>
-    {% else %}
+    <h1>Add Post.... </h1>
+    <br />
+    <div class="form-group">
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="btn btn-success">Post</button>
+    </div>
+    <script>
+        var user_id = "{{ user.id }}";
+        document.getElementById("author").value = user_id;
+    </script>
+{% else %}
     You are not allowed
-    {% endif %}
+{% endif %}
 
-    {% endblock %}
+{% endblock %}
