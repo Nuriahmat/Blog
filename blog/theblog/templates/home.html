@@ -10,7 +10,7 @@
         <a href="{% url 'detail' post.pk %}">{{ post.title }}</a> -
         <a href="{% url  'category' post.category %}">{{ post.category }}</a> -
         {{ post.author.first_name }}
-        {{ post.author.last_name}} -
+        {{ post.author.last_name}} -<br/>
         {% if user.is_authenticated %}
             {% if user.id == post.author.id %}
                 <a href="{% url 'update_post' post.pk %}" class="btn btn-info">Edit</a>
@@ -18,7 +18,7 @@
                 </br>
             {% endif %}
         {% endif %}
-        {{ post.body|safe }}
+        {{ post.snippet }}
     </li>
     {% endfor %}
 </ul>

@@ -17,12 +17,15 @@ class Category(models.Model):
 
 class Post(models.Model):
     title = models.CharField(max_length=255)
+    header_image = models.ImageField(
+        null=True, blank=True, upload_to="images/")
     title_tag = models.CharField(max_length=255)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     body = RichTextField(blank=True, null=True)
     # body = models.TextField()
     post_date = models.DateField(auto_now_add=True)
     category = models.CharField(max_length=255, default='coding')
+    snippet = models.CharField(max_length=255, default='snippet')
     likes = models.ManyToManyField(User, related_name='blog_post')
 
     def total_likes(self):
@@ -32,4 +35,4 @@ class Post(models.Model):
         return self.title + ' | ' + str(self.author)
 
     def get_absolute_url(self):
-        return reverse('detail', args=(str(self.id)))
+        return reverse('home')
