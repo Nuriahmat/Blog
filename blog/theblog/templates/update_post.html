@@ -11,6 +11,7 @@ Edit post
         <br />
         <form method="POST">
             {% csrf_token %}
+            {{ form.media }}
             {{ form.as_p }}
             <button class="btn btn-success">Update</button>
     {% else %}

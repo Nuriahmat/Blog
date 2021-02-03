@@ -10,6 +10,7 @@ Create new post
     <div class="form-group">
         <form method="POST">
             {% csrf_token %}
+            {{ form.media }}
             {{ form.as_p }}
             <button class="btn btn-success">Post</button>
     </div>
