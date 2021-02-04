@@ -4,13 +4,17 @@ Edit Profile
 {% endblock %}
 
 {% block content %}
-
-<h1>edit_profile </h1>
-<br />
-<form method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button class="btn btn-success">Update Profile</button>
-
-
-    {% endblock %}
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <div class="card">
+                <div class="card-header">Update Profile</div>
+                <div class="card-body">
+                    <form method="POST">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button class="btn btn-success">Update</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

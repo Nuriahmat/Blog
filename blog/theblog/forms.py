@@ -19,7 +19,7 @@ class PostForm(forms.ModelForm):
             'title_tag': forms.TextInput(attrs={'class': 'form-control'}),
             'author': forms.TextInput(attrs={'class': 'form-control', 'type': 'hidden', 'id': 'author', 'value': ''}),
             # 'author': forms.Select(attrs={'class': 'form-control'}),
-            'category': forms.Select(choices=choices, attrs={'class': 'form-control'}),
+            'category': forms.Select(choices=choices, attrs={'class': 'form-select'}),
             'body': forms.Textarea(attrs={'class': 'form-control'}),
             'snippet': forms.Textarea(attrs={'class': 'form-control'}),
 
@@ -29,11 +29,12 @@ class PostForm(forms.ModelForm):
 class EditForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ('title', 'title_tag', 'body', 'snippet')
+        fields = ('title', 'title_tag', 'category', 'body', 'snippet')
 
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'please input title'}),
             'title_tag': forms.TextInput(attrs={'class': 'form-control'}),
+            'category': forms.Select(choices=choices, attrs={'class': 'form-select'}),
             'body': forms.Textarea(attrs={'class': 'form-control'}),
             'snippet': forms.Textarea(attrs={'class': 'form-control'}),
         }

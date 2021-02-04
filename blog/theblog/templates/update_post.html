@@ -4,20 +4,26 @@ Edit post
 {% endblock %}
 
 {% block content %}
-
-{% if user.is_authenticated %}
-    {% if user.id == post.author.id %}
-        <h1>Update Post.... </h1>
-        <br />
-        <form method="POST">
-            {% csrf_token %}
-            {{ form.media }}
-            {{ form.as_p }}
-            <button class="btn btn-success">Update</button>
-    {% else %}
-        <h1>You are not allowed here</h1>
-    {% endif %}
-{% else %}
-You are not allowed here
-{% endif %}
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <div class="card">
+            {% if user.is_authenticated %}
+                <div class="card-header">Update Post</div>
+                <div class="card-body">
+                    {% if user.id == post.author.id %}
+                        <form method="POST">
+                            {% csrf_token %}
+                            {{ form.media }}
+                            {{ form.as_p }}
+                            <button class="btn btn-success">Update</button>
+                    {% else %}
+                        <h1>You are not allowed here</h1>
+                    {% endif %}
+                </div>
+            {% else %}
+                <h1>You are not allowed here</h1>
+            {% endif %}
+            </div>
+        </div>
+    </div>
 {% endblock %}

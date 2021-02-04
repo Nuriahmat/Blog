@@ -21,11 +21,11 @@ class SignUpForm(UserCreationForm):
         fields = ('username', 'first_name', 'last_name',
                   'email', 'password1', 'password2')
 
-    def __init__(self, *args, **kwargs):
-        super(SignUpForm, self).__init__(*args, kwargs)
-        self.fields['username'].widget.attrs['class'] = 'form-control'
-        self.fields['password1'].widget.attrs['class'] = 'form-control'
-        self.fields['password2'].widget.attrs['class'] = 'form-control'
+    # def __init__(self, *args, **kwargs):
+    #     super(SignUpForm, self).__init__(*args, kwargs)
+    #     self.fields['username'].widget.attrs['class'] = 'form-control'
+    #     self.fields['password1'].widget.attrs['class'] = 'form-control'
+    #     self.fields['password2'].widget.attrs['class'] = 'form-control'
 
 
 class EditProfileForm(UserChangeForm):

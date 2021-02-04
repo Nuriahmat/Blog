@@ -4,22 +4,28 @@ Create new post
 {% endblock %}
 
 {% block content %}
-{% if user.is_authenticated %}
-    <h1>Add Post.... </h1>
-    <br />
-    <div class="form-group">
-        <form method="POST" enctype="multipart/form-data">
-            {% csrf_token %}
-            {{ form.media }}
-            {{ form.as_p }}
-            <button class="btn btn-success">Post</button>
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <div class="card">
+            {% if user.is_authenticated %}
+                <div class="card-header">Add Post</div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <form method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {{ form.media }}
+                            {{ form.as_p }}
+                            <button class="btn btn-success">Submit</button>
+                    </div>
+                </div>
+                <script>
+                    var user_id = "{{ user.id }}";
+                    document.getElementById("author").value = user_id;
+                </script>
+            {% else %}
+                You are not allowed
+            {% endif %}
+            </div>
+        </div>
     </div>
-    <script>
-        var user_id = "{{ user.id }}";
-        document.getElementById("author").value = user_id;
-    </script>
-{% else %}
-    You are not allowed
-{% endif %}
-
 {% endblock %}

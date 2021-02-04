@@ -4,13 +4,17 @@ Registration
 {% endblock %}
 
 {% block content %}
-
-<h1>Register </h1>
-<br />
-<form method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button class="btn btn-success">Register</button>
-
-
-    {% endblock %}
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <div class="card">
+                <div class="card-header">Register</div>
+                <div class="card-body">
+                    <form method="POST">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button class="btn btn-success">Register</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
