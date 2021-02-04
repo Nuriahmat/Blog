@@ -24,7 +24,7 @@ def LikeView(request, pk):
 class HomeView(ListView):
     model = Post
     template_name = "home.html"
-    ordering = ['-post_date']
+    ordering = ['post_date']
 
     def get_context_data(self, *args, **kwargs):
         category_menu = Category.objects.all()
@@ -33,9 +33,25 @@ class HomeView(ListView):
         return context
 
 
-def CategoryView(request, category_name):
-    category_post = Post.objects.filter(category=category_name)
-    return render(request, "categories.html", {'category_name': category_name, 'category_post': category_post})
+# def CategoryView(request, category_name):
+#     category_post = Post.objects.filter(category=category_name)
+#     return render(request, "categories.html", {'category_name': category_name, 'category_post': category_post})
+
+
+class CategoryView(ListView):
+    model = Post
+    template_name = "categories.html"
+
+    def get_context_data(self, *args, **kwargs):
+        category_name = self.kwargs['category_name']
+        category_menu = Category.objects.all()
+        category_post = Post.objects.filter(
+            category=self.kwargs['category_name'])
+        context = super(CategoryView, self).get_context_data(*args)
+        context["category_name"] = category_name
+        context["category_post"] = category_post
+        context["category_menu"] = category_menu
+        return context
 
 
 class DetailView(DetailView):

@@ -11,6 +11,7 @@ urlpatterns = [
     path('article/edit/<int:pk>', updatePostView.as_view(), name="update_post"),
     path('article/<int:pk>/remove', deletePostView.as_view(), name="delete_post"),
     path('add_category/', AddCategoryView.as_view(), name="add_category"),
-    path('category/<str:category_name>', CategoryView, name="category"),
+    path('category/<str:category_name>',
+         CategoryView.as_view(), name="category"),
     path('like/<int:pk>', LikeView, name="like_post"),
 ]

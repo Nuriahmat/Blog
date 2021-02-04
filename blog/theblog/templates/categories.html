@@ -6,22 +6,49 @@
 
 {% block content %}
 
-{% if category_post %}
-<h1>{{ category_name }}</h1>
-<ul>
+<!-- Blog Entries Column -->
+<div class="col-md-8">
+    {% if category_post %}
+    <h1></h1>
+    <h1 class="my-4">{{ category_name }}
+        <small>categories</small>
+    </h1>
     {% for post in category_post %}
-    <li> <a href="{% url 'detail' post.pk %}">{{ post.title }}</a>
-        - {{ post.author.first_name }}
-        {{ post.author.last_name}} -
-        {% if user.is_authenticated %}
-        <a href="{% url 'update_post' post.pk %}" class="btn btn-info">Edit</a>
-        <a href="{% url 'delete_post' post.pk %}" class="btn btn-danger">Delete</a></br>
+        <div class="card mb-4">
+        {% if post.header_image %}
+            <img class="card-img-top" src="{{ post.header_image.url }}" alt="Card image cap" height="300px">
+        {% else %}
+            <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap">
         {% endif %}
-        {{ post.body|slice:":200" }}
-    </li>
+        <div class="card-body">
+            <h2 class="card-title">{{ post.title }}</h2>
+            <p class="card-text">{{ post.snippet }}</p>
+            <a href="{% url 'detail' post.pk %}" class="btn btn-primary">Read More &rarr;</a>
+            {% if user.is_authenticated %}
+                {% if user.id == post.author.id %}
+                    <a href="{% url 'update_post' post.pk %}" class="btn btn-info">Edit</a>
+                    <a href="{% url 'delete_post' post.pk %}" class="btn btn-danger">Delete</a>
+                {% endif %}
+            {% endif %}
+        </div>
+        <div class="card-footer text-muted">
+            Posted on January 1, 2020 by
+            <a href="#">{{ post.author.first_name }}</a>
+        </div>
+        </div>
     {% endfor %}
-</ul>
-{% else %}
-<h1>This page dose not exist </h1>
-{% endif %}
+    <!-- Pagination -->
+    <ul class="pagination justify-content-center mb-4">
+        <li class="page-item">
+        <a class="page-link" href="#">&larr; Older</a>
+        </li>
+        <li class="page-item disabled">
+        <a class="page-link" href="#">Newer &rarr;</a>
+        </li>
+    </ul>
+    {% else %}
+        <h1>This page dose not exist </h1>
+    {% endif %}
+</div>
+{% include 'sidebar.html' %}
 {% endblock %}
