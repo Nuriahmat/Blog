@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %}
+Create new post
+{% endblock %}
+
+{% block content %}
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <div class="card">
+            {% if user.is_authenticated %}
+                <div class="card-header">Create Profile </div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <form method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {{ form.media }}
+                            {{ form.as_p }}
+                            <button class="btn btn-success">Submit</button>
+                    </div>
+                </div>
+            {% else %}
+                You are not allowed create profile
+            {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

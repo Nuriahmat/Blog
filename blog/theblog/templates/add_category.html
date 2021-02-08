@@ -6,14 +6,14 @@ Add new Category
 
 {% block content %}
 {% if user.is_authenticated %}
-<h1>Add Category.... </h1>
-<br />
-<form method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button class="btn btn-success">Save</button>
-</form>
+    <h1>Add Category.... </h1>
+    <br />
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-success">Save</button>
+    </form>
 {% else %}
-You are not allowed
+    You are not allowed
 {% endif %}
 {% endblock %}

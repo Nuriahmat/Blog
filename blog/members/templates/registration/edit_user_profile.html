@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block title %}
+Edit Profile
+{% endblock %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+    {% if user.id == profile.user.id %}
+        <div class="row justify-content-center">
+            <div class="col-md-10">
+                <div class="card">
+                    <div class="card-header">Update Profile</div>
+                    <div class="card-body">
+                        <form method="POST">
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                            <button class="btn btn-success">Update</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <h2> You are not correct user to edit this profile </h2>
+    {% endif %}
+{% else %}
+    <h2>You are not allowed </h2>
+{% endif %}
+{% endblock %}
